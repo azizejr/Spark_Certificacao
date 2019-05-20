@@ -1,0 +1,96 @@
+Instalação do Jupyter na imagem Hortonworks Sandbox no Oracle Vbox
+****************************************************************************************************************************
+legenda:
+
+# - prompt do root seguido de comando a copiar e colar
+* - ação a ser realizada caso o comando ofereça alguma opção 
+[] - tecla a ser pressionada 
+
+Exemplo: [Esc] - representa a tecla "esc"
+
+****************************************************************************************************************************
+
+Inserir os seguintes comandos na sequência que são apresentados:
+
+# yum install nano centos-release-scl zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libpng-devel libjpg-devel atlas-devel 
+
+* Aperte y e dê enter nas perguntas que forem feitas
+
+# yum groupinstall "Development tools" 
+
+* Aperte y e dê enter nas perguntas que forem feitas
+
+# wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+
+# easy_install-2.7 pip 
+
+# pip install --upgrade pip
+
+# pip install --upgrade numpy scipy pandas scikit-learn tornado pyzmq pygments matplotlib jinja2 jsonschema
+
+# pip install jupyter
+
+****************************************************************************************************************************
+
+-------> Vamos instalar o kernel do pyspark no jupter recém instalado:
+
+# cd /usr/share/jupyter/kernels
+# mkdir pyspark
+# cd pyspark
+# vi kernel.json
+
+
+****************************************************************************************************************************
+Copiar o conteudo abaixo para esse arquivo e colar no editor de texto aberto:
+
+
+Digitar [i] oi [insert] para iniciar a edição de texto: 
+
+{
+	"display_name": "PySpark",
+	"language": "python",
+	"argv": [
+		"python",
+		"-m",
+		"ipykernel_launcher",
+		"-f",
+		"{connection_file}"
+	],
+	"env": {
+		"SPARK_HOME": "/usr/hdp/2.6.5.0-292/spark2",
+		"PYTHONPATH": "/usr/hdp/2.6.5.0-292/spark2/python/:/usr/hdp/2.6.5.0-292/spark2/python/lib/py4j-0.10.6-src.zip",
+		"PYSPARK_DRIVER_PYTHON": "ipython",
+		"PYSPARK_PYTHON": "python",
+		"PYTHONSTARTUP": "/usr/hdp/2.6.5.0-292/spark2/python/pyspark/shell.py"
+	}
+}
+
+Digitar [esc] logo após [:][w][q][Enter] para sair do arquivo salvando-o.
+
+****************************************************************************************************************************
+
+Agora vamos iniciar o jupyter:
+
+****************************************************************************************
+Importante, abrir o jupyter em uma pasta que contenha os arquivos que serão trabalhados. 
+****************************************************************************************
+
+# jupyter notebook --ip=0.0.0.0 --port=8889 --allow-root
+
+Com isso feito é preciso apenas abrir o navegador acessando o endereço: 
+
+http://localhost:8889/ 
+ou 
+http://127.0.0.1:8889/ 
+
+E será solicitado um Token para Login que foi apresentado na hora que o Jupyter sera executado. 
+
+Por Exemplo:
+
+	http://(sandbox-hdp.hortonworks.com or 127.0.0.1):8889/?token=312fba8046e64c7583d7426becd8c55ff2baaaf3f69cele4
+
+
+A hash que será exibida será como a mostrada acima (312fba8046e64c7583d7426becd8c55ff2baaaf3f69cele4). 
+Copie-a e insira-a no campo que estara disponível no ser navegador.   
+
+
