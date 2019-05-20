@@ -62,6 +62,9 @@ Para seguir esse material é necessário ter o Jupyter Notebook instalado em seu
 
 ### Instalação
 
+Este material pode ser acessado através do Jupyter Notebook dentro de uma VM com a imagem do SandBox da Hortonworks. Para isso, devemos instalar o jupyter dentro da VM com um procedimento específico descrito em um documento chamado: 
+"instrucoesInstalacaoJupyterHorton.txt", de autoria de Eduardo Viana.  
+
 Como o objetivo desse material não é a demonstração de instalação dos diferentes ambientes, disponibilizamos um exemplo simples de como instalar o Spark através de uma imagem Docker que é de fácil instalação, essa instalação já contempla o Jupyter notebook com o Kernel do pyspark: 
 
 ```shell
@@ -93,4 +96,8 @@ docker run -d -p 8888:8888 -v C:/pastaescolhida/mount:/data jupyter/all-spark-no
 ## Licença
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Observações
+
+As variáveis que contiverem caminhos para o acesso de arquivos usados nos notebooks deverão ser adapatadas às arvores de diretório de cada usuário.
 
