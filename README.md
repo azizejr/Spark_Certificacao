@@ -89,7 +89,7 @@ docker run -d -p 8888:8888 -v C:/pastaescolhida/mount:/data jupyter/all-spark-no
 
 * **André Carneiro** 
 * **Azize A Fernandes Jr.** 
-* **Cindy Silva**
+* **Erick Seo**
 
 
 
